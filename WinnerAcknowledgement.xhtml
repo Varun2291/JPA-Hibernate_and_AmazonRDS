@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+	Name: Varun Rajavelu
+	This file will display the winner of the Raffle.
+	It displays the First and last name and also displays Mean and standard deviation
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+   	xmlns:ui="http://java.sun.com/jsf/facelets"
+   	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Winner</title>
+</head>
+<body>
+	<h:form>
+		<h3>Thank you. Your Survey has been successfully submitted.</h3>
+		<h4>Congratulations. You have won two movie tickets.</h4>
+		<table>
+			<tr><td>First Name:</td><td> #{formBean.student.firstName} </td></tr>
+			<tr><td>Last Name:</td><td> #{formBean.student.lastName}</td></tr>
+			<tr><td>Mean:</td><td> #{formBean.raffleObj.mean} </td></tr>
+			<tr><td>SD:</td><td> #{formBean.raffleObj.standardDeviation}</td></tr>
+			
+		</table>
+		<h:commandButton action="index.xhtml" value="Go To Welcome Page"></h:commandButton>
+	</h:form>
+</body>
+</html>

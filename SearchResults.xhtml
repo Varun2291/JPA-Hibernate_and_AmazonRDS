@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- This file is used to display the result of the search from the database -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Search Results</title>
+	</h:head>
+	<h:body>
+		<h:form>
+			<table>
+				<tr>
+					<td style="width:40%;">
+						<p:commandButton action="SurveyForm.xhtml" value="Go To Survey Page"></p:commandButton>
+					</td>
+					
+					<td style="margin-left:20%; width:40%;">
+						<p:commandButton action="index.xhtml" value="Go To Welcome Page"></p:commandButton>
+					</td>
+					
+					<td style="margin-left:20%; width:40%;">
+						<p:commandButton action="SearchRecord.xhtml" value="Go To Search Page"></p:commandButton>
+					</td>
+				</tr>
+			</table>
+		
+			<h2 align="center">Search Results</h2>
+			<h5>Number of Matching Records: #{sessionScope.search_result_size} </h5>
+			
+			<h:dataTable var="records" value="#{sessionScope.search_result}" border="1">
+			<h:column> 	<f:facet name="header">First Name</f:facet>  	#{records.firstName}		</h:column>
+			<h:column> 	<f:facet name="header">Last Name</f:facet>   	#{records.lastName} 	</h:column>
+			<h:column> 	<f:facet name="header">Address</f:facet>	#{records.address} 	</h:column>
+			<h:column>	<f:facet name="header">Zip</f:facet>		#{records.zip} 	</h:column>
+			<h:column>	<f:facet name="header">City</f:facet>		#{records.city} 		</h:column>
+			<h:column>	<f:facet name="header">State</f:facet>		#{records.state} 	</h:column>
+			<h:column>	<f:facet name="header">Telephone</f:facet>		#{records.telePhone}	</h:column>
+			<h:column>	<f:facet name="header">Email</f:facet>		#{records.emailId} 	</h:column>
+			<h:column>	<f:facet name="header">DateOfSurvey</f:facet>		${fn:substring(records.surveyDate, 0, 10)} </h:column>
+			<h:column>	<f:facet name="header">Semester start Date</f:facet>		${fn:substring(records.semDate, 0, 10)}	</h:column>
+			<h:column>	<f:facet name="header">Interests</f:facet>	#{records.interests} </h:column>	
+			<h:column>	<f:facet name="header">Recommending to others</f:facet>	#{records.likelihood} </h:column>
+			<h:column>	<f:facet name="header">Comment</f:facet>	#{records.comments}</h:column>
+			<h:column>	
+				<f:facet name="header">Delete</f:facet>	
+				<h:commandLink value="Delete" action="#{formBean.DeleteRecord(records)}" update="@form" process="@this"/>	
+			</h:column>
+			
+		</h:dataTable>	
+	
+		<p align="center" style="font-size:175%"><b><u>By Varun Rajavelu</u></b></p>
+			
+		</h:form>
+		
+	</h:body>
+</html>

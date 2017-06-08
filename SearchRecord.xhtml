@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- This file is used to search from the database, using a combination of fields. -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Search Page</title>
+	</h:head>
+	<h:body>
+		<h:form>
+			<table>
+				<tr>
+					<td style="width:40%;">
+						<p:commandButton action="SurveyForm.xhtml" value="Go To Survey Page"></p:commandButton>
+					</td>
+					
+					<td style="margin-left:20%; width:40%;">
+						<p:commandButton action="index.xhtml" value="Go To Welcome Page"></p:commandButton>
+					</td>
+					
+					<td style="margin-left:20%; width:40%;">
+						<p:commandButton action="SearchRecord.xhtml" value="Go To Search Page"></p:commandButton>
+					</td>
+				</tr>
+			</table>
+		
+			<h2 align="center">Enter Values to search</h2>
+			<table>
+				<tr>
+					<td>First name:</td>
+					<td>
+						<p:inputText id="firstName" value="#{formBean.student.firstName}" />
+					</td>
+				</tr>
+				<tr>
+					<td>Last name:</td>
+					<td>
+						<p:inputText id="lastName" value="#{formBean.student.lastName}" />
+					</td>
+				</tr>
+				<tr>
+					<td>City: </td>
+					<td>
+						<p:inputText id="city" value="#{formBean.student.city}" />
+					</td>
+				</tr>
+				<tr>
+					<td>State:</td>
+					<td>
+						<p:inputText id="state" value="#{formBean.student.state}" />
+					</td>
+				</tr>
+			</table>
+			<h:commandButton id = "submit" type="submit" action="#{formBean.searchDb()}" value="Search"  />
+		</h:form>
+		<p align="center" style="font-size:175%"><b><u>By Varun Rajavelu</u></b></p>
+	</h:body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+	Name: Varun Rajavelu
+	This File  will show the complete list of all the survey taken
+	It will has have links to page to other pages 
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+   	xmlns:ui="http://java.sun.com/jsf/facelets"
+   	xmlns:f="http://java.sun.com/jsf/core"
+   	xmlns:p="http://primefaces.org/ui"
+   	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>List Survey</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<table>
+			<tr>
+				<td style="width:40%;">
+					<p:commandButton action="SurveyForm.xhtml" value="Go To Survey Page"></p:commandButton>
+				</td>
+				
+				<td style="margin-left:20%; width:40%;">
+					<p:commandButton action="index.xhtml" value="Go To Welcome Page"></p:commandButton>
+				</td>
+				
+				<td style="margin-left:20%; width:40%;">
+					<p:commandButton action="SearchRecord.xhtml" value="Go To Search Page"></p:commandButton>
+				</td>
+			</tr>
+		</table>
+		<h2 align="center">List of Surveys </h2>
+		
+		<h4 style="color:red;">#{deleted_message}</h4> <br />
+		
+		<h:dataTable var="listname" value="#{formBean.studentList()}" border="1">
+			<h:column> 	<f:facet name="header">First Name</f:facet>  	#{listname.firstName}		</h:column>
+			<h:column> 	<f:facet name="header">Last Name</f:facet>   	#{listname.lastName} 	</h:column>
+			<h:column> 	<f:facet name="header">Address</f:facet>	#{listname.address} 	</h:column>
+			<h:column>	<f:facet name="header">Zip</f:facet>		#{listname.zip} 	</h:column>
+			<h:column>	<f:facet name="header">City</f:facet>		#{listname.city} 		</h:column>
+			<h:column>	<f:facet name="header">State</f:facet>		#{listname.state} 	</h:column>
+			<h:column>	<f:facet name="header">Telephone</f:facet>		#{listname.telePhone}	</h:column>
+			<h:column>	<f:facet name="header">Email</f:facet>		#{listname.emailId} 	</h:column>
+			<h:column>	<f:facet name="header">DateOfSurvey</f:facet>		${fn:substring(listname.surveyDate, 0, 10)} 		</h:column>
+			<h:column>	<f:facet name="header">Semester start Date</f:facet>		${fn:substring(listname.semDate, 0, 10)}		</h:column>
+			<h:column>	<f:facet name="header">Interests</f:facet>	#{listname.interests} </h:column>	
+			<h:column>	<f:facet name="header">Recommending to others</f:facet>	#{listname.likelihood} </h:column>
+			<h:column>	<f:facet name="header">Comment</f:facet>	#{listname.comments}</h:column>
+		</h:dataTable>	
+	
+		<p align="center" style="font-size:175%"><b><u>By Varun Rajavelu</u></b></p>
+	</h:form>
+	
+</h:body>
+</html>

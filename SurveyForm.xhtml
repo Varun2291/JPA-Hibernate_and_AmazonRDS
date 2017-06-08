@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Name: Varun Rajavelu
+This File contains the Survey page having all the required information.
+It also contains the form validation.
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"	
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Survey Page</title>
+	 <h:outputStylesheet library="css" name="Styles.css"  />
+</h:head>
+<h:body>
+	<h:form>
+		<h2><u>Kindly fill out the details</u></h2>
+		
+		<table>
+			<tr>
+			<td><p:outputLabel value="First Name*:" /></td>
+			<td>
+			<p:inputText id="fname" value="#{formBean.student.firstName}"
+			            required="true" 
+                 		requiredMessage="Please Enter Your First Name"
+                 		validatorMessage="Enter alphabets, less than 15 characters.">
+			<f:validateLength maximum="15" />
+			<f:validateRegex pattern="[A-Za-z]*" />
+			</p:inputText>
+			<p:message for="fname" />
+			
+			</td>
+			
+			</tr> 
+			<tr>
+				<td><p:outputLabel value="Last Name*:" /></td>
+				<td>
+					<p:inputText id="lname" value="#{formBean.student.lastName}"
+						required="true" 
+                 		requiredMessage="Please Enter Your Last Name"
+                 		validatorMessage="Enter alphabets, less than 15 characters.">
+					<f:validateLength maximum="15" />
+					<f:validateRegex pattern="[A-Za-z]*" />
+					</p:inputText>
+					<p:message for="lname" />
+					
+				</td>
+			</tr>
+			<tr>
+				<td><p:outputLabel  value="Street Address*:" /></td>
+				<td>
+					<p:inputText id="saddr" value="#{formBean.student.address}"
+						required="true" 
+                 		requiredMessage="Enter Your Address"
+                 		validatorMessage="Less than 30 characters.">
+					<f:validateLength maximum="30" />
+					<f:validateRegex pattern="[0-9a-zA-Z ]*"/>
+					</p:inputText>
+					<p:message for="saddr" />
+				</td>
+			</tr> 
+			
+			<tr>
+			<td><p:outputLabel  value="Zip*:" /></td>
+				<td>
+					<p:inputText id="zip"  value="#{formBean.student.zip}" 
+									required="true"
+                 					requiredMessage="Enter Zip Code"
+                 					validatorMessage="Enter Valid Format(5 digits).">
+                 	<f:ajax event="keyup" render="city state"/>
+					<f:validateLength minimum="5" maximum="5" />
+					</p:inputText>
+					<p:message for="zip" />
+				</td>
+			</tr>
+			
+			<tr>
+			<td><p:outputLabel value="City*:" /></td>
+			<td><p:inputText id="city" value="#{formBean.student.city}" 
+							required="true" 
+							requiredMessage="Required Feild.">
+			</p:inputText>
+			<p:message for="city" />
+			</td>
+			</tr>
+			
+			<tr>
+			<td><p:outputLabel value="State*:" /></td>
+			<td><p:inputText  id="state" value="#{formBean.student.state}" 
+								required="true" 
+								requiredMessage="Required Feild.">
+			</p:inputText>
+			<p:message for="state" />
+			</td>
+			</tr>
+												
+			<tr>
+			<td><p:outputLabel value="Telephone*:"/></td>
+			<td>
+			
+				<p:inputMask mask="(999) 999-9999" required="true" id="tele" value="#{formBean.student.telePhone}"
+									requiredMessage="Enter Telephone number" />
+				<p:message for="tele" />
+			</td>
+			</tr>
+			<tr>
+			<td><p:outputLabel value="Email Id*:" /></td>
+			<td>
+			<p:inputText id="email"  value="#{formBean.student.emailId}" 
+							required="true" 
+							requiredMessage="Required Feild">
+			<f:validateRegex pattern="[a-zA-Z0-9._]*@[a-zA-Z0-9.]*.[a-zA-Z]*" />
+			</p:inputText>
+			<p:message for="email" />	
+			</td>
+			</tr>
+			
+			<tr>
+			<td><p:outputLabel value="Sem Start Date*:" /> </td>
+			<td>
+				<p:calendar value="#{formBean.student.semDate}" required="true" id="semDate"
+									requiredMessage="Enter Sem Start Date" />
+				<p:message for="semDate" />
+			</td>
+			</tr>
+			
+			<tr>
+			<p:messages />
+			<td><p:outputLabel value="Survey Date*:" /> </td>
+			<td>
+             	<p:calendar value="#{formBean.student.surveyDate}" required="true" id="surDate"
+									requiredMessage="Enter Survey Date" />
+				<p:message for="surDate" />
+            </td>
+			</tr>
+			</table>
+		
+		<br><u>What did you like most about the campus?</u></br>
+		<p:selectManyCheckbox id="thingstolike" value="#{formBean.student.thingstolike}">
+			<f:selectItem itemValue="Students" itemLabel="Students" />
+			<f:selectItem itemValue="Locations" itemLabel="Locations" />
+			<f:selectItem itemValue="Campus" itemLabel="Campus" />
+			<f:selectItem itemValue="Atmosphere" itemLabel="Atmosphere" />
+			<f:selectItem itemValue="DormRooms" itemLabel="Dorm Rooms" />
+			<f:selectItem itemValue="Sports" itemLabel="Sports" />
+		</p:selectManyCheckbox>
+		
+		<br><u>As a prospective student what interested you most in the university?</u></br>
+		<p:selectOneRadio id="interests" value="#{formBean.student.interests}">
+			<f:selectItem itemValue="Friends" itemLabel="Friends" />
+			<f:selectItem itemValue="Television" itemLabel="Television" />
+			<f:selectItem itemValue="Internet" itemLabel="Internet" />
+			<f:selectItem itemValue="Other" itemLabel="Other" />
+		</p:selectOneRadio>
+		
+		<br><u>What is the likelihood of you recommending this school to other prospective students?</u></br>
+		<p:autoComplete value="#{formBean.student.likelihood}" completeMethod="#{formBean.completeLikelihood}" forceSelection="true" />
+		
+		<br />
+		<br><u>Enter the data for the Raffle (1-100)</u></br>
+		<p:inputText id="Data" value="#{formBean.student.data}" required="true" 
+				requiredMessage="Enter Data" validatorMessage="Enter atleast 10 values and should be between 1-100">
+				<f:validateLength minimum="19" />
+		</p:inputText>
+		<p:message for="Data" />
+		
+		<br />
+		<br><u>Additional Comments</u></br>
+		<p:inputTextarea rows="10" cols="40" value="#{formBean.student.comments}" />
+ 
+		<br />
+		<br /><br />
+		<p:commandButton value="Submit" id="submit" type="submit" ajax="false" action="#{formBean.calculateRaffle()}" />
+		<p:commandButton value="Cancel" id="reset" type="reset"  ajax="false" style="margin-left:20px;" />
+		<p align="center" style="font-size:175%"><b><u>By Varun Rajavelu</u></b></p>
+	</h:form>
+</h:body>
+</html>
